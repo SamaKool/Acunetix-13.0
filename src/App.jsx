@@ -1,8 +1,10 @@
-import React from 'react'
-import './App.css'
-import BounceCards from "./components/BounceCards";
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
+  
+  const emptyRefs = { heroRef: null, eventRef: null, aboutRef: null, scheduleRef: null };
+  const dummyScroll = () => {};
 
   const images = [
     "https://images.unsplash.com/photo-1517841905240-472988babdf9",
@@ -12,27 +14,25 @@ function App() {
   ];
 
   return (
-    <>
-      {/* Header Section */}
-      {/* <div className="text-center py-10">
-        <h1 className="text-5xl font-black text-white tracking-tighter">
-          Acunetix 13.0
-        </h1>
-      </div> */}
+    <div className="bg-black min-h-screen flex flex-col justify-between">
+       {/* Navbar */}
+      <Navbar 
+        scrollToRefs={emptyRefs} 
+        scrollToSection={dummyScroll} 
+        isScrolled={true} 
+      />
+      
+      
+      <main className="flex-grow flex items-center justify-center">
+         <h1 className="text-white text-5xl font-bold tracking-widest">
+            ACUNETIX 13.0
+         </h1>
+      </main>
 
-      {/* Bounce Cards Section */}
-      <div className="flex justify-center items-center min-h-[500px]">
-        <BounceCards
-          images={images}
-          containerWidth={500}
-          containerHeight={500}
-          animationDelay={2}
-          animationStagger={0}
-          enableHover={true}
-        />
-      </div>
-    </>
-  )
+      {/* Footer */}
+      <Footer scrollToRefs={emptyRefs} scrollToSection={dummyScroll} />
+    </div>
+  );
 }
 
-export default App
+export default App;
