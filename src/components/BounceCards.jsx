@@ -11,6 +11,7 @@ const BounceCards = ({
     animationDelay = 0.1,
     animationStagger = 0.08,
     enableHover = true,
+    onCardClick = null,
 }) => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [elevatedIndex, setElevatedIndex] = useState(null);
@@ -75,8 +76,9 @@ const BounceCards = ({
                                 ? "0 20px 40px rgba(0,0,0,0.35)"
                                 : "0 6px 18px rgba(0,0,0,0.22)",
                             zIndex: elevatedIndex === index ? 50 : index,
-                            cursor: enableHover ? "pointer" : "default",
+                            cursor: onCardClick || enableHover ? "pointer" : "default",
                         }}
+                        onClick={() => onCardClick && onCardClick(index)}
                         initial={{ opacity: 0, y: 60, scale: 0.7, rotate: rotation }}
                         animate={{
                             opacity: 1,
