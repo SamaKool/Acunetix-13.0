@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -7,6 +8,32 @@ import Event from './components/Event'
 import Sponsors from './components/Sponsors'
 import Reel from './components/Reel'
 import Footer from './components/Footer'
+import SchedulePage from './pages/SchedulePage'
+
+function HomePage({ scrollToRefs, scrollToSection, isScrolled }) {
+  return (
+    <>
+      <Navbar
+        scrollToRefs={scrollToRefs}
+        scrollToSection={scrollToSection}
+        isScrolled={isScrolled}
+      />
+
+      <main className="grow bg-black">
+        <Hero ref={scrollToRefs.heroRef} />
+        <Event ref={scrollToRefs.eventRef} />
+        <About ref={scrollToRefs.aboutRef} />
+        <Sponsors ref={scrollToRefs.sponsorsRef} />
+        <Reel ref={scrollToRefs.reelRef} />
+      </main>
+
+      <Footer
+        scrollToRefs={scrollToRefs}
+        scrollToSection={scrollToSection}
+      />
+    </>
+  )
+}
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,26 +62,23 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar 
-        scrollToRefs={scrollToRefs} 
-        scrollToSection={scrollToSection} 
-        isScrolled={isScrolled}
-      />
-      
-      <main className="grow bg-black">
-        <Hero ref={heroRef} />
-        <About ref={aboutRef} />
-        <Event ref={eventRef} />
-        <Sponsors ref={sponsorsRef} />
-        <Reel ref={reelRef} />
-      </main>
-
-      <Footer 
-        scrollToRefs={scrollToRefs} 
-        scrollToSection={scrollToSection}
-      />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen flex flex-col">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                scrollToRefs={scrollToRefs}
+                scrollToSection={scrollToSection}
+                isScrolled={isScrolled}
+              />
+            }
+          />
+          <Route path="/schedule" element={<SchedulePage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 
