@@ -4,7 +4,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
-import Event from './components/Event'
+import Schedule from './components/Schedule'
 import Sponsors from './components/Sponsors'
 import Reel from './components/Reel'
 import Footer from './components/Footer'
@@ -21,7 +21,7 @@ function HomePage({ scrollToRefs, scrollToSection, isScrolled }) {
 
       <main className="grow bg-black">
         <Hero ref={scrollToRefs.heroRef} />
-        <Event ref={scrollToRefs.eventRef} />
+        <Schedule ref={scrollToRefs.eventRef} />
         <About ref={scrollToRefs.aboutRef} />
         <Sponsors ref={scrollToRefs.sponsorsRef} />
         <Reel ref={scrollToRefs.reelRef} />
