@@ -1,5 +1,76 @@
 @import "tailwindcss";
 
+/* Vermin Vibes font */
+@font-face {
+  font-family: 'VerminVibes';
+  src: url('./assets/fonts/vermin-vibes/vermin_vibes.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --animate-floatCard: floatCard 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatCard {
+  0% { translate: 0 0; rotate: 0deg; }
+  100% { translate: 8px -14px; rotate: 5deg; }
+}
+
+@keyframes spin3d {
+  0% { transform: rotateX(-15deg) rotateY(0deg); }
+  100% { transform: rotateX(-15deg) rotateY(360deg); }
+}
+
+@keyframes floatRandom {
+  0% { transform: var(--float-start); }
+  25% { transform: var(--float-mid1); }
+  50% { transform: var(--float-mid2); }
+  75% { transform: var(--float-mid3); }
+  100% { transform: var(--float-start); }
+}
+
+@keyframes glitch {
+  0%, 100% {
+    text-shadow: 3px 0 #e63946, -3px 0 #00d4ff, 0 0 20px rgba(0,212,255,0.6), 0 0 60px rgba(0,212,255,0.3), 0 0 80px rgba(230,57,70,0.2);
+    transform: translate(0) skewX(0deg);
+    opacity: 1;
+  }
+  7% {
+    text-shadow: -4px -1px #e63946, 4px 1px #00d4ff, 0 0 25px rgba(0,212,255,0.8);
+    transform: translate(-3px, 1px) skewX(-2deg);
+  }
+  10% {
+    text-shadow: 5px 0 #e63946, -5px 0 #00d4ff, 0 0 30px rgba(230,57,70,0.7);
+    transform: translate(4px, -1px) skewX(3deg);
+    opacity: 0.85;
+  }
+  12% {
+    text-shadow: 2px 0 #e63946, -2px 0 #00d4ff, 0 0 20px rgba(0,212,255,0.5);
+    transform: translate(0) skewX(0deg);
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 3px 0 #e63946, -3px 0 #00d4ff, 0 0 20px rgba(0,212,255,0.6), 0 0 60px rgba(0,212,255,0.3);
+    transform: translate(0) skewX(0deg);
+  }
+  52% {
+    text-shadow: -6px -2px #e63946, 6px 2px #00d4ff, 0 0 35px rgba(0,212,255,0.9);
+    transform: translate(-5px, 2px) skewX(-4deg);
+    opacity: 0.9;
+  }
+  55% {
+    text-shadow: 4px 1px #e63946, -4px -1px #00d4ff, 0 0 25px rgba(230,57,70,0.6);
+    transform: translate(3px, -1px) skewX(2deg);
+  }
+  57% {
+    text-shadow: 3px 0 #e63946, -3px 0 #00d4ff, 0 0 20px rgba(0,212,255,0.6), 0 0 60px rgba(0,212,255,0.3);
+    transform: translate(0) skewX(0deg);
+    opacity: 1;
+  }
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
