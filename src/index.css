@@ -355,3 +355,144 @@ footer {
     @apply bg-background text-foreground;
   }
 }
+
+/* ── Events Section ─────────────────────────────────── */
+.events-section {
+  padding: 5rem 2rem;
+  background: #000;
+  text-align: center;
+}
+
+.events-heading {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event-comet-card {
+  width: 100%;
+}
+
+.event-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2.5rem 2rem;
+  min-height: 260px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.event-card-content:hover {
+  background: rgba(0, 255, 200, 0.04);
+  border-color: rgba(0, 255, 200, 0.2);
+}
+
+.event-card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.event-card-desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+.event-card-cta {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0, 255, 200, 0.7);
+  transition: color 0.2s ease;
+}
+
+.event-card-content:hover .event-card-cta {
+  color: rgba(0, 255, 200, 1);
+}
+
+/* Responsive – Events */
+@media (max-width: 900px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .events-section {
+    padding: 3rem 1rem;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .event-card-content {
+    min-height: 200px;
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* ── Schedule Page ──────────────────────────────────── */
+.schedule-page {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.schedule-back-btn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.schedule-back-btn:hover {
+  border-color: rgba(0, 255, 200, 0.5);
+  color: rgba(0, 255, 200, 0.9);
+}
+
+.schedule-title {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.schedule-placeholder {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.4);
+}
