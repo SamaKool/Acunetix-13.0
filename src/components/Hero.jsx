@@ -43,10 +43,10 @@ const Hero = forwardRef((props, ref) => {
       </div>
 
       {/* Acunetix 13.0 Card with Fuzzy Text */}
-      <div className="acunetix-card">
+      <div className="margin-top: acunetix-card ">
         <div className="acunetix-card-inner">
           <FuzzyText
-            fontSize="clamp(3rem, 12vw, 10rem)"
+            fontSize="clamp(14vw, 10vw, 5rem)"
             fontWeight={900}
             color="#fff"
             enableHover
@@ -56,7 +56,8 @@ const Hero = forwardRef((props, ref) => {
             glitchInterval={3000}
             glitchDuration={300}
           >
-            Acunetix 13.0
+             Acunetix 13.0 
+            
           </FuzzyText>
         </div>
       </div>
