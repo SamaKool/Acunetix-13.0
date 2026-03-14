@@ -136,7 +136,7 @@ uniform float uFade;
     float sp=min(d,1.0),ep=max(d-1.0,0.0);
     float fm=flareY(max(y,0.0)),rm=clamp(1.0-(y/max(W_CURVE_RANGE,EPS)),0.0,1.0),cm=fm*rm;
     const float G=0.05; float xS=1.0+(FLARE_AMOUNT*W_CURVE_AMOUNT*G)*cm;
-    float sPix=clamp(y/R_V,0.0,1.0),bGain=pow(1.0-sPix,W_BOTTOM_EXP),sum=0.0;
+    float sPix=clamp(y/(R_V*uVLenFactor),0.0,1.0),bGain=pow(1.0-sPix,W_BOTTOM_EXP),sum=0.0;
     for(int s=0;s<2;++s){
         float sgn=s==0?-1.0:1.0;
         for(int i=0;i<W_LANES;++i){
@@ -150,7 +150,7 @@ uniform float uFade;
             sum+=amp*lat*seg1;
         }
     }
-    float span=smoothstep(-3.0,0.0,y)*(1.0-smoothstep(R_V-6.0,R_V,y));
+    float span=smoothstep(-3.0,0.0,y)*(1.0-smoothstep((R_V*uVLenFactor)-6.0,R_V*uVLenFactor,y));
     return uWIntensity*sum*topF*bGain*span;
 }
 
@@ -182,7 +182,7 @@ void mainImage(out vec4 fc,in vec2 frag){
         float mask=step(0.0,yp);
         b+=wt*bsa(uvc,p,mask*env,sig);
     }
-    float sPix=clamp(yPix/R_V,0.0,1.0),topA=pow(1.0-smoothstep(TOP_FADE_START,1.0,sPix),TOP_FADE_EXP);
+    float sPix=clamp(yPix/(R_V*uVLenFactor),0.0,1.0),topA=pow(1.0-smoothstep(TOP_FADE_START,1.0,sPix),TOP_FADE_EXP);
     float L=a+b*topA;
     float w=vWisps(vec2(uvc.x,yPix),topA);
     float fog=0.0;
@@ -244,7 +244,7 @@ export const LaserFlow = ({
   dpr,
   mouseSmoothTime = 0.0,
   mouseTiltStrength = 0.01,
-  horizontalBeamOffset = 0.1,
+  horizontalBeamOffset = 0.0,
   verticalBeamOffset = 0.0,
   flowSpeed = 0.35,
   verticalSizing = 2.0,
@@ -281,6 +281,7 @@ export const LaserFlow = ({
         .split('')
         .map(x => x + x)
         .join('');
+    if (c.length === 8) c = c.slice(0, 6);
     const n = parseInt(c, 16) || 0xffffff;
     return { r: ((n >> 16) & 255) / 255, g: ((n >> 8) & 255) / 255, b: (n & 255) / 255 };
   };
@@ -317,7 +318,10 @@ export const LaserFlow = ({
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
     const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array([-1, -1, 0, 3, -1, 0, -1, 3, 0]), 3));
+    geometry.setAttribute(
+      'position',
+      new THREE.BufferAttribute(new Float32Array([-1, -1, 0, 3, -1, 0, -1, 3, 0]), 3)
+    );
 
     const uniforms = {
       iTime: { value: 0 },
@@ -359,7 +363,8 @@ export const LaserFlow = ({
     mesh.frustumCulled = false;
     scene.add(mesh);
 
-    const timer = new THREE.Timer();
+    const clock = new THREE.Clock();
+    let prevTime = 0;
     let fade = hasFadedRef.current ? 1 : 0;
 
     const mouseTarget = new THREE.Vector2(0, 0);
@@ -394,16 +399,16 @@ export const LaserFlow = ({
       resizeRaf = requestAnimationFrame(setSizeNow);
     };
 
-    setSizeNow();
     const ro = new ResizeObserver(scheduleResize);
     ro.observe(mount);
 
-    const io = new IntersectionObserver(
-      entries => {
-        inViewRef.current = entries[0]?.isIntersecting ?? true;
-      },
-      { root: null, threshold: 0 }
-    );
+    requestAnimationFrame(() => {
+      requestAnimationFrame(setSizeNow);
+    });
+
+    const io = new IntersectionObserver(entries => {
+      inViewRef.current = entries[0]?.isIntersecting ?? true;
+    }, { root: null, threshold: 0 });
     io.observe(mount);
 
     const onVis = () => {
@@ -481,9 +486,9 @@ export const LaserFlow = ({
       raf = requestAnimationFrame(animate);
       if (pausedRef.current || !inViewRef.current) return;
 
-      timer.update();
-      const t = timer.getElapsed();
-      const dt = timer.getDelta();
+      const t = clock.getElapsedTime();
+      const dt = Math.max(0, t - prevTime);
+      prevTime = t;
 
       const dtMs = dt * 1000;
       emaDtRef.current = emaDtRef.current * 0.9 + dtMs * 0.1;
@@ -528,6 +533,7 @@ export const LaserFlow = ({
       canvas.removeEventListener('webglcontextrestored', onCtxRestored);
       geometry.dispose();
       material.dispose();
+      renderer.forceContextLoss();
       renderer.dispose();
       if (mount.contains(canvas)) mount.removeChild(canvas);
     };
@@ -575,6 +581,12 @@ export const LaserFlow = ({
     color
   ]);
 
-return <div ref={mountRef} className={`w-full h-full relative ${className || ''}`} style={{ ...style, height: '100%', width: '100%' }} />;};
+  return (
+    <div
+      ref={mountRef}
+      className={className || ''}
+      style={{ width: '100%', height: '100%', position: 'relative', ...style }} />
+  );
+};
 
 export default LaserFlow;

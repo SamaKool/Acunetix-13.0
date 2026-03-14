@@ -25,7 +25,7 @@ const Schedule = forwardRef((props, ref) => {
                         <CometCard className="stacked-comet-card">
                             <div
                                 className="stacked-card-content"
-                                onClick={() => navigate('/schedule')}
+                                onClick={() => navigate(`/schedule/${evt.id}`)}
                             >
                                 <span className="stacked-card-number">0{evt.id}</span>
                                 <h3 className="stacked-card-title">{evt.title}</h3>
