@@ -14,6 +14,7 @@ import SchedulePageNew_1 from './pages/SchedulePageNew_1'
 import SchedulePageNew_2 from './pages/SchedulePageNew_2'
 import SchedulePageNew_3 from './pages/SchedulePageNew_3'
 import EventDetails from './components/EventDetails'
+import ScrollToTop from './components/ScrollToTop'
 
 function forceScrollTop() {
   window.scrollTo(0, 0);
