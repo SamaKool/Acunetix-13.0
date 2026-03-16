@@ -2,14 +2,20 @@ import React, { useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import eventsData from '../data/eventsData';
+import ShapeGrid from './ShapeGrid';
 import gamestormBg from '../assets/gamestrom bg.jpg';
 import gamestormFg from '../assets/foreground gamestrom.png';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import FlickeringGrid from './FlickeringGrid';
+import CtrlAltEliteBackground from './CtrlAltEliteBackground';
 import MatrixRain from './MatrixRain';
 import LetterGlitch from './LetterGlitch';
 import { GridScan } from './GridScan';
+import BugBountyBackground from './BugBountyBackground';
+import InteractiveParticleField from './InteractiveParticleField';
+import Threads from './Threads';
+import FloatingLines from './FloatingLines';
 
 /* ── Particle Canvas — dramatic floating particles ── */
 const ParticleCanvas = ({ color }) => {
@@ -190,30 +196,28 @@ const EventDetails = () => {
             )}
 
             {/* GridScan background for Escape Room (timescape) */}
-            {id === 'timescape' && (
-                <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
-                    <GridScan
-                        sensitivity={0.5}
-                        linesColor="transparent"
-                        scanColor="#a21caf"
-                        scanOpacity={0.4}
-                        gridScale={0.1}
-                        lineThickness={1}
-                        lineJitter={0}
-                        bloomIntensity={0.6}
-                        chromaticAberration={0.02}
-                        noiseIntensity={0.01}
-                        scanGlow={1.0}
-                        scanSoftness={4}
-                        scanPhaseTaper={0.8}
-                        scanDuration={1.0}
-                        scanDelay={2.5}
-                        enablePost={false}
-                        className="w-full h-full"
-                        style={{ position: 'absolute', inset: 0, background: '#0a0014' }}
-                    />
-                </div>
-            )}
+            {/* GridScan background for Escape Room (timescape) */}
+{id === 'timescape' && (
+    <div className="fixed inset-0 w-full h-full z-10 pointer-events-none bg-[#0a0014]">
+        <GridScan
+            // Using your requested specs
+            sensitivity={0.55}
+            lineThickness={1}
+            gridScale={0.1}
+            scanOpacity={0.4}
+            enablePost={true}
+            bloomIntensity={0.6}
+            chromaticAberration={0.002}
+            noiseIntensity={0.01}
+            
+            // Applying your Purple theme colors
+            linesColor="#a21caf"    // Darker purple base lines
+            scanColor={'#a21caf'} // Your primary purple (e.g., #a21caf)
+        />
+        {/* Adds a dark vignette to make the edges blend into the page */}
+        
+    </div>
+)}
 
 
                         {/* Matrix rain for build-a-thon and codeoflies, FlickeringGrid for ctrlaltelite, all with bg-slate-900/90 overlay */}
@@ -225,26 +229,40 @@ const EventDetails = () => {
                                 </>
                         )}
                         {id === 'ctrlaltelite' && (
-                                <>
-                                    <FlickeringGrid color={theme.dark} className="z-0" />
-                                    <div className="fixed inset-0 w-full h-full z-0 pointer-events-none" />
-                                </>
+                            <CtrlAltEliteBackground />
                         )}
+                        {id === 'treasure-trove' && <FloatingLines linesGradient={[theme.primary, theme.secondary]} />}
+                         {id === 'dpl' && (
+  <div className="fixed inset-0 z-1 w-full h-full pointer-events-none">
+    <ShapeGrid 
+      hoverFillColor="#e8d020" 
+      shape="hexagon" 
+      borderColor="rgba(255, 255, 255, 0.1)" 
+      
+    />
+  </div>
+                    
+)}
 
-                        {/* LetterGlitch background for braniac and bugbounty, with fixed glitch colors and a dark overlay for readability */}
-                        {(id === 'brainiac' || id === 'bugbounty') && (
-                                <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
-                                    <LetterGlitch
-                                        glitchColors={[theme.primary, invertedPrimary]}
-                                        glitchSpeed={50}
-                                        centerVignette={false}
-                                        outerVignette={false}
-                                        smooth={true}
-                                        style={{ background: 'transparent' }}
-                                    />
-                                    <div className="absolute inset-0 bg-slate-900/70" style={{ zIndex: 1 }} />
-                                </div>
+                        {/* LetterGlitch background for braniac, BugBountyBackground for bugbounty */}
+                        {id === 'brainiac' && (
+                            <InteractiveParticleField/>
                         )}
+                        {id === 'bugbounty' && (
+                            <BugBountyBackground />
+                        )}
+                        {id === 'escap' && (
+  <div className="fixed inset-0 -z-10 w-full h-full bg-[#0e0d0d] pointer-events-none">
+    <GridScan 
+      scanColor="#39ff14"     // Match your theme (e.g., Neon Green)
+      linesColor="#1a1a1a"    // Subtle grid lines
+      gridScale={0.15}        // Size of the grid
+      scanOpacity={0.6} 
+      showPreview={false}     // Keep this false for a clean background
+      enableWebcam={false}    // Set to true if you want the face-tracking feature
+    />
+  </div>
+)}
 
             {/* Removed large ambient glows */}
 
