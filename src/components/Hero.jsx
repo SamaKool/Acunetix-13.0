@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import shibuyaCrossing from '../assets/shibuya crossing_2.png';
+
 import heroVideo from '../assets/Hero.mp4';
 
 const TARGET_DATE = new Date('2026-03-07T00:00:00+05:30').getTime();
