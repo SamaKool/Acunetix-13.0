@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import shibuyaCrossing from '../assets/shibuya crossing_2.png';
 import heroVideo from '../assets/Hero.mp4';
 
+// Updated logic: if the date is in the past, it returns all zeros
 const TARGET_DATE = new Date('2026-03-07T00:00:00+05:30').getTime();
 
 function getTimeLeft() {
@@ -28,12 +28,9 @@ const Hero = forwardRef((props, ref) => {
   }, []);
 
   return (
-    <section
-      ref={ref}
-      id="home"
-      className="min-h-screen w-full bg-cover bg-center bg-no-repeat relative"
-      style={{ backgroundImage: `url(${shibuyaCrossing})` }}
-    >
+  
+    <section ref={ref} className="relative w-full h-screen overflow-hidden">
+      
       {/* Video background */}
       <video
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
@@ -43,23 +40,31 @@ const Hero = forwardRef((props, ref) => {
         muted
         playsInline
       />
+      
       {/* Darker semi-transparent overlay */}
       <div className="absolute inset-0 w-full h-full bg-black/40 z-10 pointer-events-none" />
-        {/* Centered content above video/overlay */}
-        <div className="absolute inset-0 min-h-screen flex flex-col items-center justify-center text-center z-20">
-          <h1
-            className="mx-auto acunetix-hero-heading text-white text-[44vw] md:text-[30vw] lg:text-[20vw] font-[Audiowide,Arial,sans-serif] font-normal tracking-wide drop-shadow-lg leading-[0.7] uppercase whitespace-nowrap"
-            style={{ letterSpacing: '0.03em' }}
+      
+      {/* Centered content above video/overlay */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-20 px-4">
+        <h1
+          className="acunetix-hero-heading text-white text-[15vw] md:text-[12vw] lg:text-[10vw] font-[Audiowide,Arial,sans-serif] font-normal tracking-wide drop-shadow-lg leading-tight uppercase"
+          style={{ letterSpacing: '0.03em' }}
+        >
+          ACUNETIX 13.0
+        </h1>
+        
+        <div className="mt-12 md:mt-24">
+          <span className="block text-lg md:text-2xl font-semibold text-white/80 tracking-widest mb-2 uppercase">
+            {Date.now() > TARGET_DATE ? "Event is Live" : "Event Starts In"}
+          </span>
+          <div 
+            className="inline-block text-3xl md:text-5xl font-mono font-bold text-white bg-black/60 backdrop-blur-sm rounded-lg px-6 py-4 shadow-2xl border border-white/10"
+            key={`${timeLeft.days}-${timeLeft.seconds}`}
           >
-            ACUNETIX 13.0
-          </h1>
-          <div className="mt-24">
-            <span className="block text-lg md:text-2xl font-semibold text-white/80 tracking-widest mb-2">EVENT STARTS IN</span>
-            <span className="block text-3xl md:text-5xl font-mono font-bold text-white bg-black/40 rounded-lg px-6 py-2 shadow-lg mt-12" key={`t-${timeLeft.seconds}`}>
-              {pad(timeLeft.days)}:{pad(timeLeft.hours)}:{pad(timeLeft.minutes)}:{pad(timeLeft.seconds)}
-            </span>
+            {pad(timeLeft.days)}:{pad(timeLeft.hours)}:{pad(timeLeft.minutes)}:{pad(timeLeft.seconds)}
           </div>
         </div>
+      </div>
     </section>
   );
 });
