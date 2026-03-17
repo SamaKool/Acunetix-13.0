@@ -1,0 +1,1 @@
+import{j as e}from"./index-1n21q2vJ.js";import{S as a}from"./ScheduleDayPage-DWx7aeyk.js";import"./ShapeGrid-DHPc8iQl.js";const t=[{id:1,name:"BRAINIAC",location:"Seminar Hall",time:"11:00 AM"},{id:2,name:"CODE OF LIES",location:"Room 301",time:"01:00 PM"}];function n(){return e.jsx(a,{dayLabel:"27th March",scheduleEvents:t})}export{n as default};
