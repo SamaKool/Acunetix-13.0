@@ -15,6 +15,12 @@ import SchedulePageNew_1 from './pages/SchedulePageNew_1'
 import SchedulePageNew_2 from './pages/SchedulePageNew_2'
 import SchedulePageNew_3 from './pages/SchedulePageNew_3'
 import EventDetails from './components/EventDetails'
+import RegisterCOL from './pages/RegisterCOL'
+import RegisterBrainiac from './pages/RegisterBrainiac'
+import RegisterCtrlAltElite from './pages/RegisterCtrlAltElite'
+import RegisterDPL from './pages/RegisterDPL'
+import RegisterEscapeRoom from './pages/RegisterEscapeRoom'
+import RegisterTreasureTrove from './pages/RegisterTreasureTrove'
 
 function forceScrollTop() {
   window.scrollTo(0, 0);
@@ -120,6 +126,12 @@ function App() {
         <Route path="/schedule/2" element={<SchedulePageNew_2 />} />
         <Route path="/schedule/3" element={<SchedulePageNew_3 />} />
         <Route path="/events/:eventName" element={<EventDetails />} />
+        <Route path="/register" element={<RegisterCOL />} />
+        <Route path="/register/brainiac" element={<RegisterBrainiac />} />
+        <Route path="/register/cae" element={<RegisterCtrlAltElite />} />
+        <Route path="/register/dpl" element={<RegisterDPL />} />
+        <Route path="/register/escaperoom" element={<RegisterEscapeRoom />} />
+        <Route path="/register/treasuretrove" element={<RegisterTreasureTrove />} />
       </Routes>
       <Chatbot />
     </div>

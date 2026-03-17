@@ -377,26 +377,48 @@ const EventDetails = () => {
                             </motion.div>
 
                             {/* Register button */}
-                            <motion.a
-                                href={event.registerLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-block px-10 py-4 rounded-lg font-black text-sm tracking-[0.25em] uppercase text-black transition-all duration-300 no-underline"
-                                style={{
-                                    backgroundColor: theme.primary,
-                                    boxShadow: 'none',
-                                }}
-                                whileHover={{
-                                    scale: 1.05,
-                                    boxShadow: 'none',
-                                }}
-                                whileTap={{ scale: 0.97 }}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 1 }}
-                            >
-                                Register Now
-                            </motion.a>
+                            {/* Register button */}
+                            {event.registerLink.startsWith('/') ? (
+                                <motion.button
+                                    onClick={() => navigate(event.registerLink)}
+                                    className="inline-block px-10 py-4 rounded-lg font-black text-sm tracking-[0.25em] uppercase text-black transition-all duration-300 no-underline cursor-pointer"
+                                    style={{
+                                        backgroundColor: theme.primary,
+                                        boxShadow: 'none',
+                                    }}
+                                    whileHover={{
+                                        scale: 1.05,
+                                        boxShadow: 'none',
+                                    }}
+                                    whileTap={{ scale: 0.97 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 1 }}
+                                >
+                                    Register Now
+                                </motion.button>
+                            ) : (
+                                <motion.a
+                                    href={event.registerLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-block px-10 py-4 rounded-lg font-black text-sm tracking-[0.25em] uppercase text-black transition-all duration-300 no-underline"
+                                    style={{
+                                        backgroundColor: theme.primary,
+                                        boxShadow: 'none',
+                                    }}
+                                    whileHover={{
+                                        scale: 1.05,
+                                        boxShadow: 'none',
+                                    }}
+                                    whileTap={{ scale: 0.97 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 1 }}
+                                >
+                                    Register Now
+                                </motion.a>
+                            )}
                         </motion.div>
 
                         {/* Right column - Floating poster (desktop only) */}

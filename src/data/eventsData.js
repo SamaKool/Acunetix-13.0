@@ -29,7 +29,8 @@ const eventsData = [
         date: 'March 7, 2026',
         time: '11:00 AM',
         venue: 'Seminar Hall',
-        registerLink: 'https://forms.gle/CzhiveFKNvWGogk49',
+        // registerLink: 'https://forms.gle/CzhiveFKNvWGogk49',
+        registerLink: '/register/brainiac',
         // Poster: warm sandy/orange beige bg, orange clipboards, brown text
         theme: {
             primary: '#d4883c',
@@ -122,7 +123,8 @@ const eventsData = [
         date: 'March 7, 2026',
         time: '01:00 PM',
         venue: 'Room 301',
-        registerLink: 'https://forms.gle/1iNkmX8BZrByeRkg8',
+        // registerLink: 'https://forms.gle/1iNkmX8BZrByeRkg8',
+        registerLink: '/register',
         // Poster: brown/sepia vintage bg (#6b4226), dark orange title, playing cards, question marks
         theme: {
             primary: '#c26a18',
@@ -153,7 +155,8 @@ const eventsData = [
         date: 'March 7, 2026',
         time: '02:00 PM',
         venue: 'Lab 3',
-        registerLink: 'https://forms.gle/ebS6M9xvVcFyCQG6A',
+        // registerLink: 'https://forms.gle/ebS6M9xvVcFyCQG6A',
+        registerLink: '/register/cae',
         // Poster: dark teal/dark cyan-green bg (#0f3038), aqua/teal highlights (#4ac8c8), code editor
         theme: {
             primary: '#4ac8c8',
@@ -184,7 +187,8 @@ const eventsData = [
         date: 'March 7, 2026',
         time: '03:00 PM',
         venue: 'Auditorium',
-        registerLink: 'https://forms.gle/5ouKVcsUxw6FZxux7',
+        // registerLink: 'https://forms.gle/5ouKVcsUxw6FZxux7',
+        registerLink: '/register/dpl',
         // Poster: dark navy blue bg (#1a2856), bright yellow trophy (#e8d020), yellow bottom section
         theme: {
             primary: '#e8d020',
@@ -246,7 +250,8 @@ const eventsData = [
         date: 'March 7, 2026',
         time: '12:00 PM',
         venue: 'Room 105',
-        registerLink: 'https://forms.gle/qeAfVicLZKiDcM8F6',
+        // registerLink: 'https://forms.gle/qeAfVicLZKiDcM8F6',
+        registerLink: '/register/escaperoom',
         // Poster: dark indigo-purple bg (#1a1040), bright violet-blue door, purple jigsaw pieces, purple glow rays
         theme: {
             primary: '#7b68ee',
@@ -277,7 +282,8 @@ const eventsData = [
         date: 'March 7, 2026',
         time: '11:00 AM',
         venue: 'Campus Grounds',
-        registerLink: 'https://forms.gle/eV3yRkUWx51VBoH9A',
+        // registerLink: 'https://forms.gle/eV3yRkUWx51VBoH9A',
+        registerLink: '/register/treasuretrove',
         // Poster: dark charcoal/brown border, sandy/tan parchment center, dark brown title text, gold coins
         theme: {
             primary: '#c49a5c',
