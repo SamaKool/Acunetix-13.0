@@ -5,6 +5,8 @@ import Dpl from '../assets/dpl.webp';
 import TimeScape from '../assets/timeScape.webp';
 import TreasureTrove from '../assets/treasure-trove.webp';
 
+const EVENT_REDIRECT_URL = 'https://engg.dypvp.edu.in/Acunetix.aspx';
+
 const eventsData = [
     {
         id: 'brainiac',
@@ -26,7 +28,7 @@ const eventsData = [
         date: 'March 27,28,29 2026',
         //time: '11:00 AM',
         //venue: 'Seminar Hall',
-        registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSe-ZO7-A5zxB6yp0mxmozbekUcH1HfoIBApUlX9sYq_yDspwQ/closedform',
+        registerLink: EVENT_REDIRECT_URL,
         // Poster: warm sandy/orange beige bg, orange clipboards, brown text
         theme: {
             primary: '#d4883c',
@@ -57,7 +59,7 @@ const eventsData = [
         date: 'March 27,28,29 2026',
         //time: '01:00 PM',
         //venue: 'Room 301',
-        registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLScWArV8MRUwdRbw1OqEqT4hjOEfXR62wIE-nckfGAYtbTZgpA/closedform',
+        registerLink: EVENT_REDIRECT_URL,
         // Poster: brown/sepia vintage bg (#6b4226), dark orange title, playing cards, question marks
         theme: {
             primary: '#c26a18',
@@ -88,7 +90,7 @@ const eventsData = [
         date: 'March 27,28,29 2026',
         //time: '02:00 PM',
         //venue: 'Lab 3',
-        registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLScCsxLYyiXiMfKrf5smHhL2gLkL1mcoqDgdk_xYMklPbc-7UQ/closedform',
+        registerLink: EVENT_REDIRECT_URL,
         // Poster: dark teal/dark cyan-green bg (#0f3038), aqua/teal highlights (#4ac8c8), code editor
         theme: {
             primary: '#4ac8c8',
@@ -119,7 +121,7 @@ const eventsData = [
         date: 'March 27,28,29 2026',
         //time: '03:00 PM',
         //venue: 'Auditorium',
-        registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdPQLWLeVlXxcq47LrYq8p2PVwA7JOya18gnoLNIKaKyBMXYA/viewform',
+        registerLink: EVENT_REDIRECT_URL,
         // Poster: dark navy blue bg (#1a2856), bright yellow trophy (#e8d020), yellow bottom section
         theme: {
             primary: '#e8d020',
@@ -150,7 +152,7 @@ const eventsData = [
         date: 'March 27,28,29 2026',
         //time: '12:00 PM',
         //venue: 'Room 105',
-        registerLink: 'https://acunetix13.tech/events/timescape',
+        registerLink: EVENT_REDIRECT_URL,
         // Poster: dark indigo-purple bg (#1a1040), bright violet-blue door, purple jigsaw pieces, purple glow rays
         theme: {
             primary: '#7b68ee',
@@ -181,7 +183,7 @@ const eventsData = [
         date: 'March 27,28,29 2026',
         //time: '11:00 AM',
         //venue: 'Campus Grounds',
-        registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSeFzEYXIm8NXIVdm_txlutgYejXrWGgjnOVHrIfTMrzsxYkog/closedform',
+        registerLink: EVENT_REDIRECT_URL,
         // Poster: dark charcoal/brown border, sandy/tan parchment center, dark brown title text, gold coins
         theme: {
             primary: '#c49a5c',

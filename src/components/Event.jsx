@@ -1,11 +1,11 @@
 import React, { forwardRef, useRef, useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import eventsData from '../data/eventsData';
+
+const EVENT_REDIRECT_URL = 'https://engg.dypvp.edu.in/Acunetix.aspx';
 
 /* ─── Lightweight card — zero animation libraries ─── */
 const EventCard = React.memo(({ event, isActive }) => {
   const [hovered, setHovered] = useState(false);
-  const navigate = useNavigate();
   const hasPoster = Boolean(event.poster);
 
   return (
@@ -24,7 +24,7 @@ const EventCard = React.memo(({ event, isActive }) => {
           opacity: isActive ? 1 : 0.55,
           willChange: 'transform, opacity',
         }}
-        onClick={() => navigate(`/events/${event.id}`)}
+        onClick={() => window.location.assign(EVENT_REDIRECT_URL)}
       >
         {/* Glow behind card */}
         <div
@@ -82,7 +82,7 @@ const EventCard = React.memo(({ event, isActive }) => {
               }}
               onClick={(e) => {
                 e.stopPropagation();
-                navigate(`/events/${event.id}`);
+                window.location.assign(EVENT_REDIRECT_URL);
               }}
             >
               Enter The Game →
@@ -207,7 +207,6 @@ const Event = forwardRef((props, ref) => {
     };
   }, []);
 
-  const navigate = useNavigate();
   const theme = eventsData[activeIndex]?.theme;
 
   return (

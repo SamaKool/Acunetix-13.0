@@ -11,6 +11,8 @@ import FloatingLines from './FloatingLines';
 import CtrlAltEliteBackground from './CtrlAltEliteBackground';
 import ShapeGrid from './ShapeGrid';
 
+const EVENT_REDIRECT_URL = 'https://engg.dypvp.edu.in/Acunetix.aspx';
+
 /* ── Marquee Strip ────────────────────────────────── */
 const MarqueeStrip = ({ words, color }) => (
     <div
@@ -358,9 +360,7 @@ const EventDetails = () => {
                             {/* Register and Instructions buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 items-start">
                                 <motion.a
-                                    href={event.registerLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    href={EVENT_REDIRECT_URL}
                                     className="inline-block px-10 py-4 border-2 border-transparent rounded-lg font-black text-sm tracking-[0.25em] uppercase text-black transition-all duration-300 no-underline hover:scale-105 active:scale-95"
                                     style={{
                                         backgroundColor: theme.primary,

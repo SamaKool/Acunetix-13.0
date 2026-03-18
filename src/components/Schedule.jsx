@@ -1,9 +1,10 @@
 import React, { forwardRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { CometCard } from './comet-card';
 import day1Svg from '../assets/cards/day-1.svg';
 import day2Svg from '../assets/cards/day-2.svg';
 import day3Svg from '../assets/cards/day-3.svg';
+
+const EVENT_REDIRECT_URL = 'https://engg.dypvp.edu.in/Acunetix.aspx';
 
 const events = [
     { id: 1, title: 'Day 1', subtitle: 'Opening Ceremony', image: day1Svg },
@@ -12,8 +13,6 @@ const events = [
 ];
 
 const Schedule = forwardRef((props, ref) => {
-    const navigate = useNavigate();
-
     return (
         <section ref={ref} id="schedule" className="events-section"
         style={{ background: "radial-gradient(ellipse at center, rgba(0,255,200,0.18) 0%, rgba(0,255,200,0.06) 70%, #000 80%)", position: "relative" }}
@@ -45,7 +44,7 @@ const Schedule = forwardRef((props, ref) => {
                         <CometCard className="stacked-comet-card">
                             <div
                                 className="stacked-card-content"
-                                onClick={() => navigate(`/schedule/${evt.id}`)}
+                                onClick={() => window.location.assign(EVENT_REDIRECT_URL)}
                                 style={evt.image ? { backgroundImage: `url(${evt.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
                             >
                                 {!evt.image && (
