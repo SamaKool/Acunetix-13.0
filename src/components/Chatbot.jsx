@@ -91,7 +91,7 @@ const BotpressChat = () => {
       }
     };
 
-    const interactionEvents = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+    const interactionEvents = ['click', 'keydown'];
 
     const cleanupListeners = () => {
       interactionEvents.forEach((eventName) => {
@@ -117,16 +117,21 @@ const BotpressChat = () => {
       window.addEventListener(eventName, onFirstInteraction, { passive: true });
     });
 
-    if (typeof window.requestIdleCallback === 'function') {
+    const isDesktop =
+      typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(min-width: 1024px)').matches;
+
+    const shouldAutoLoad = isDesktop;
+
+    if (shouldAutoLoad && typeof window.requestIdleCallback === 'function') {
       idleId = window.requestIdleCallback(() => {
         cleanupListeners();
         startLoading();
-      }, { timeout: 3500 });
-    } else {
+      }, { timeout: 15000 });
+    } else if (shouldAutoLoad) {
       timeoutId = window.setTimeout(() => {
         cleanupListeners();
         startLoading();
-      }, 2500);
+      }, 12000);
     }
 
     return () => {

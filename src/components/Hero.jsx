@@ -1,7 +1,6 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import heroVideoMp4 from '../assets/bg.mp4';
 import heroVideoWebm from '../assets/bg.webm'; 
-import ShinyText from "../components/ShinyText";
 
 const TARGET_DATE = new Date('2026-03-27T00:00:00+05:30').getTime();
 
@@ -22,10 +21,51 @@ function pad(n) {
 
 const Hero = forwardRef((props, ref) => {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
     return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+
+    const reduceMotion =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const connection =
+      navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const saveData = Boolean(connection?.saveData);
+    const effectiveType = connection?.effectiveType || '';
+    const slowConnection = /2g/.test(effectiveType);
+    const isMobileViewport = window.innerWidth < 768;
+
+    if (reduceMotion || saveData || slowConnection || isMobileViewport) {
+      return undefined;
+    }
+
+    let timeoutId = null;
+    let idleId = null;
+
+    const enableVideo = () => {
+      setShouldLoadVideo(true);
+    };
+
+    if (typeof window.requestIdleCallback === 'function') {
+      idleId = window.requestIdleCallback(enableVideo, { timeout: 5000 });
+    } else {
+      timeoutId = window.setTimeout(enableVideo, 4000);
+    }
+
+    return () => {
+      if (idleId !== null && typeof window.cancelIdleCallback === 'function') {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId);
+      }
+    };
   }, []);
 
   const TimerUnit = ({ value, label }) => (
@@ -35,31 +75,37 @@ const Hero = forwardRef((props, ref) => {
           {pad(value)}
         </span>
       </div>
-      <ShinyText
-        text={label}
-        speed={3}
-        color="#289371"
-        shineColor="#7fffd4"
-        className="text-[10px] md:text-sm font-bold uppercase tracking-[0.2em]"
-      />
+      <span className="text-[10px] md:text-sm font-bold uppercase tracking-[0.2em] text-emerald-200">
+        {label}
+      </span>
     </div>
   );
 
   return (
     <section ref={ref} className="relative w-full min-h-screen h-dvh overflow-hidden flex items-center justify-center bg-black">
-      {/* Background Video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-      >
-        <source src={heroVideoWebm} type="video/webm" />
-        <source src={heroVideoMp4} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {shouldLoadVideo ? (
+        <video
+          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="none"
+          aria-hidden="true"
+        >
+          <source src={heroVideoWebm} type="video/webm" />
+          <source src={heroVideoMp4} type="video/mp4" />
+        </video>
+      ) : (
+        <div
+          className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse at center, rgba(22, 163, 74, 0.25) 0%, rgba(15, 23, 42, 0.88) 55%, #000000 100%)',
+          }}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Overlay */}
       <div className="absolute inset-0 w-full h-full bg-black/40 z-10 pointer-events-none" />

@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Event from '@/components/Event';
-import Schedule from '@/components/Schedule';
-// import Sponsors from '@/components/Sponsors';
-import Reel from '@/components/Reel';
 import Footer from '@/components/Footer';
+
+const About = lazy(() => import('@/components/About'));
+const Event = lazy(() => import('@/components/Event'));
+const Reel = lazy(() => import('@/components/Reel'));
 
 const sectionRefByState = {
   hero: 'heroRef',
@@ -18,6 +16,78 @@ const sectionRefByState = {
   sponsors: 'sponsorsRef',
   reel: 'reelRef',
 };
+
+function DeferredSection({
+  id,
+  sectionRef,
+  minHeightClassName = 'min-h-screen',
+  rootMargin = '360px 0px',
+  children,
+}) {
+  const [shouldRender, setShouldRender] = useState(false);
+  const sentinelRef = useRef(null);
+
+  const setCombinedRef = useCallback(
+    (node) => {
+      sentinelRef.current = node;
+      if (sectionRef && typeof sectionRef === 'object') {
+        sectionRef.current = node;
+      }
+    },
+    [sectionRef],
+  );
+
+  useEffect(() => {
+    if (shouldRender) return;
+
+    const node = sentinelRef.current;
+    if (!node) return;
+
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setShouldRender(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setShouldRender(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [rootMargin, shouldRender]);
+
+  if (!shouldRender) {
+    return (
+      <section
+        id={id}
+        ref={setCombinedRef}
+        className={`w-full bg-black ${minHeightClassName}`}
+        aria-hidden="true"
+      />
+    );
+  }
+
+  return (
+    <Suspense
+      fallback={
+        <section
+          id={id}
+          ref={setCombinedRef}
+          className={`w-full bg-black ${minHeightClassName}`}
+          aria-hidden="true"
+        />
+      }
+    >
+      {children}
+    </Suspense>
+  );
+}
 
 function HomePage({ scrollToRefs, scrollToSection, isScrolled }) {
   const location = useLocation();
@@ -55,13 +125,6 @@ function HomePage({ scrollToRefs, scrollToSection, isScrolled }) {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 0 }}
-        exit={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="fixed inset-0 bg-black z-9999 pointer-events-none"
-      />
       <div className="flex flex-col min-h-screen">
         <Navbar
           scrollToRefs={scrollToRefs}
@@ -71,11 +134,30 @@ function HomePage({ scrollToRefs, scrollToSection, isScrolled }) {
 
         <main className="grow bg-black">
           <Hero ref={scrollToRefs.heroRef} />
-          <About ref={scrollToRefs.aboutRef} />
-          <Event ref={scrollToRefs.eventRef} />
-          {/*<Schedule ref={scrollToRefs.scheduleRef} />*/}
-          {/* <Sponsors ref={scrollToRefs.sponsorsRef} /> */}
-          <Reel ref={scrollToRefs.reelRef} />
+
+          <DeferredSection
+            id="about"
+            sectionRef={scrollToRefs.aboutRef}
+            minHeightClassName="min-h-[70vh] md:min-h-screen"
+          >
+            <About ref={scrollToRefs.aboutRef} />
+          </DeferredSection>
+
+          <DeferredSection
+            id="events"
+            sectionRef={scrollToRefs.eventRef}
+            minHeightClassName="min-h-screen"
+          >
+            <Event ref={scrollToRefs.eventRef} />
+          </DeferredSection>
+
+          <DeferredSection
+            id="reel"
+            sectionRef={scrollToRefs.reelRef}
+            minHeightClassName="min-h-[70vh]"
+          >
+            <Reel ref={scrollToRefs.reelRef} />
+          </DeferredSection>
         </main>
 
         <Footer
