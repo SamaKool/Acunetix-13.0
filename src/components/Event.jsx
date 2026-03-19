@@ -1,16 +1,15 @@
 import React, { forwardRef, useRef, useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import eventsData from '../data/eventsData';
 
-const EVENT_REDIRECT_URL = 'https://engg.dypvp.edu.in/Acunetix.aspx';
-
 /* ─── Lightweight card — zero animation libraries ─── */
-const EventCard = React.memo(({ event, isActive }) => {
+const EventCard = React.memo(({ event, isActive, onOpenEvent }) => {
   const [hovered, setHovered] = useState(false);
   const hasPoster = Boolean(event.poster);
 
   return (
     <div
-      className="flex-shrink-0 snap-center px-3 md:px-4"
+      className="shrink-0 snap-center px-3 md:px-4"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -24,7 +23,7 @@ const EventCard = React.memo(({ event, isActive }) => {
           opacity: isActive ? 1 : 0.55,
           willChange: 'transform, opacity',
         }}
-        onClick={() => window.location.assign(EVENT_REDIRECT_URL)}
+        onClick={() => onOpenEvent(event.id)}
       >
         {/* Glow behind card */}
         <div
@@ -82,10 +81,10 @@ const EventCard = React.memo(({ event, isActive }) => {
               }}
               onClick={(e) => {
                 e.stopPropagation();
-                window.location.assign(EVENT_REDIRECT_URL);
+                onOpenEvent(event.id);
               }}
             >
-              Enter The Game →
+              View Event Details →
             </button>
           </div>
         </div>
@@ -136,6 +135,7 @@ EventCard.displayName = 'EventCard';
 
 /* ─── Main Event Section ─── */
 const Event = forwardRef((props, ref) => {
+  const navigate = useNavigate();
   const scrollRef = useRef(null);
   // Default to Ctrl Alt Elite if present.
   const initialIndex = eventsData.findIndex((e) => e.id === 'ctrlaltelite');
@@ -209,6 +209,10 @@ const Event = forwardRef((props, ref) => {
 
   const theme = eventsData[activeIndex]?.theme;
 
+  const openEventDetails = useCallback((eventId) => {
+    navigate(`/events/${eventId}`);
+  }, [navigate]);
+
   return (
     <section
       ref={ref}
@@ -277,6 +281,7 @@ const Event = forwardRef((props, ref) => {
               key={event.id}
               event={event}
               isActive={index === activeIndex}
+              onOpenEvent={openEventDetails}
             />
           ))}
         </div>

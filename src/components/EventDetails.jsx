@@ -79,6 +79,7 @@ const EventDetails = () => {
 
 
     const { theme, id } = event;
+    const registerHref = event.registerLink || EVENT_REDIRECT_URL;
 
     // Utility to invert a hex color (e.g. #4ac8c8 -> #b53737)
     function invertHex(hex) {
@@ -360,7 +361,9 @@ const EventDetails = () => {
                             {/* Register and Instructions buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 items-start">
                                 <motion.a
-                                    href={EVENT_REDIRECT_URL}
+                                    href={registerHref}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="inline-block px-10 py-4 border-2 border-transparent rounded-lg font-black text-sm tracking-[0.25em] uppercase text-black transition-all duration-300 no-underline hover:scale-105 active:scale-95"
                                     style={{
                                         backgroundColor: theme.primary,
