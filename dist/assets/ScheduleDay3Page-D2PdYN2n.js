@@ -1,1 +1,0 @@
-import{j as e}from"./index-DtnOIqbI.js";import{S as t}from"./ScheduleDayPage-CeXjt3k2.js";import"./ShapeGrid-BEgJr3J4.js";const a=[{id:1,name:"TREASURE TROVE",location:"Campus Grounds",time:"11:00 AM"},{id:2,name:"DPL",location:"Auditorium",time:"03:00 PM"}];function r(){return e.jsx(t,{dayLabel:"29th March",scheduleEvents:a})}export{r as default};
