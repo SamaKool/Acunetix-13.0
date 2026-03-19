@@ -69,11 +69,14 @@ const Navbar = ({ scrollToRefs = {}, scrollToSection = () => {}, isScrolled = fa
               e.preventDefault();
               handleLinkClick(scrollToRefs?.heroRef, "hero");
             }}
+            aria-label="Go to home section"
           >
             <img
               src={logo}
-              alt="Logo"
-              className="transform hover:scale-105 ml-8 transition-transform duration-300 "
+              alt="Acunetix logo"
+              width={96}
+              height={96}
+              className="h-14 w-auto transform hover:scale-105 ml-8 transition-transform duration-300"
             />
           </a>
         </div>

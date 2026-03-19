@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 import video1 from "../assets/Ctrl_reel_1.webm";
 import video2 from "../assets/er_reel_2.webm";
 import video3 from "../assets/cof_reel_3.webm";
 
-function Reel() {
+const Reel = forwardRef((props, ref) => {
   const videoRefs = useRef([]);
   const shouldAutoplayFallback = typeof window !== 'undefined' && !('IntersectionObserver' in window);
 
@@ -40,6 +40,8 @@ function Reel() {
 
   return (
     <section
+      ref={ref}
+      id="reel"
       className="relative min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
       style={{ background: "radial-gradient(ellipse at center, rgba(0,255,200,0.18) 0%, rgba(0,255,200,0.06) 70%, #000 80%)" }}
     >
@@ -58,13 +60,15 @@ function Reel() {
           
         </h2>
 
-        <div className="flex overflow-x-auto gap-[10px] [-webkit-overflow-scrolling:touch] pb-4 scrollbar-hide md:grid md:grid-cols-3 md:gap-6 lg:gap-8 md:overflow-visible">
+        <div className="flex overflow-x-auto gap-2.5 [-webkit-overflow-scrolling:touch] pb-4 scrollbar-hide md:grid md:grid-cols-3 md:gap-6 lg:gap-8 md:overflow-visible">
           {/* First Reel */}
           <a
-          href="https://www.instagram.com/acunetix.dit/reel/DHblKP0qE4C/"
+          href="https://www.instagram.com/reel/DHgFQCtq-LF/"
             
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open Acunetix Instagram reel 1"
+            title="Open Instagram reel"
             className="group relative shrink-0 w-[78vw] max-w-85 sm:w-[60vw] md:w-full md:max-w-none mr-4 md:mr-0 transition-transform duration-300 hover:scale-105"
           >
             <div className="relative w-full rounded-2xl overflow-hidden shadow-xl" style={{ aspectRatio: "9 / 16" }}>
@@ -86,9 +90,11 @@ function Reel() {
 
           {/* Second Reel */}
           <a
-            href="https://www.instagram.com/acunetix.dit/reel/DHeK-3ISMWk/"
+            href="https://www.instagram.com/reel/DHoGUjONGGk/?wa_logging_event=video_play_open"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open Acunetix Instagram reel 2"
+            title="Open Instagram reel"
             className="group relative shrink-0 w-[78vw] max-w-85 sm:w-[60vw] md:w-full md:max-w-none mr-4 md:mr-0 transition-transform duration-300 hover:scale-105"
           >
             <div className="relative w-full rounded-2xl overflow-hidden shadow-xl" style={{ aspectRatio: "9 / 16" }}>
@@ -111,9 +117,11 @@ function Reel() {
           {/* Third Reel */}
           <a
             
-            href="https://www.instagram.com/acunetix.dit/reel/DHdYGQDKG0E/"
+            href="https://www.instagram.com/reel/DHgp7t6KKSw/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open Acunetix Instagram reel 3"
+            title="Open Instagram reel"
             className="group relative shrink-0 w-[78vw] max-w-85 sm:w-[60vw] md:w-full md:max-w-none mr-4 md:mr-0 transition-transform duration-300 hover:scale-105"
           >
             <div className="relative w-full rounded-2xl overflow-hidden shadow-xl" style={{ aspectRatio: "9 / 16" }}>
@@ -136,6 +144,7 @@ function Reel() {
       </div>
     </section>
   );
-}
+});
 
+Reel.displayName = 'Reel';
 export default Reel;

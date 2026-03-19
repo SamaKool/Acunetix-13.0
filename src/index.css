@@ -173,14 +173,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Google Sans Local';
-  src: url('./assets/fonts/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-}
-
 @custom-variant dark (&:is(.dark *));
 
 

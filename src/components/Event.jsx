@@ -47,6 +47,10 @@ const EventCard = React.memo(({ event, isActive, onOpenEvent }) => {
             <img
               src={event.poster}
               alt={event.name}
+              width={1080}
+              height={1920}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-contain object-top"
             />
           ) : (

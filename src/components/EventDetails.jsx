@@ -171,7 +171,7 @@ const EventDetails = () => {
                         scanGlow={0.8}
                     />
                     {/* This vignette helps hide any residual blue in the corners */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#08000c]" />
+                    <div className="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-[#08000c]" />
                 </div>
             )}
 
@@ -238,6 +238,10 @@ const EventDetails = () => {
                                 <img
                                     src={event.poster}
                                     alt={event.name}
+                                    width={1080}
+                                    height={1920}
+                                    loading="eager"
+                                    decoding="async"
                                     className="w-full h-auto block"
                                 />
                             </div>
@@ -267,7 +271,7 @@ const EventDetails = () => {
 
                             {/* Event name */}
                             <h1
-                                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase leading-tight md:leading-none mb-4 break-words"
+                                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase leading-tight md:leading-none mb-4 wrap-break-word"
                                 style={{
                                     fontFamily: "'VerminVibes', 'Orbitron', monospace",
                                     color: '#fff',
@@ -295,7 +299,7 @@ const EventDetails = () => {
                             />
 
                             {/* Description */}
-                            <p className="text-white/60 text-sm md:text-base leading-relaxed mb-6 md:mb-8 font-mono break-words">
+                            <p className="text-white/60 text-sm md:text-base leading-relaxed mb-6 md:mb-8 font-mono wrap-break-word">
                                 {event.description}
                             </p>
 
@@ -316,7 +320,7 @@ const EventDetails = () => {
                                                 boxShadow: 'none',
                                             }}
                                         />
-                                        <span className="text-white/80 text-xs sm:text-sm font-semibold break-words">{item}</span>
+                                        <span className="text-white/80 text-xs sm:text-sm font-semibold wrap-break-word">{item}</span>
                                     </motion.div>
                                 ))}
                             </div>
@@ -413,6 +417,10 @@ const EventDetails = () => {
                                 <img
                                     src={event.poster}
                                     alt={event.name}
+                                    width={1080}
+                                    height={1920}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="w-full h-auto block"
                                 />
                                 {/* ...poster top glow removed... */}
@@ -465,7 +473,7 @@ const EventDetails = () => {
             {/* Modal for Instructions */}
             <AnimatePresence>
                 {isInstructionOpen && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                    <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
                         {/* Backdrop */}
                         <motion.div
                             className="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer"
