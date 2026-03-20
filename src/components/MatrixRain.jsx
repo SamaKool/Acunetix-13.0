@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 // Matrix rain effect component
-const MatrixRain = ({ color = '#4ac8c8', fontSize = 16, className = '' }) => {
+const MatrixRain = ({ color = '#ff0000', fontSize = 16, className = '' }) => {
   const canvasRef = useRef(null);
   const animationRef = useRef();
 

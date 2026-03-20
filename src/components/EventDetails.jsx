@@ -111,7 +111,7 @@ const EventDetails = () => {
             {id === 'codeoflies' && (
                 <>
                     <Suspense fallback={null}>
-                        <MatrixRain color={theme.primary} />
+                        <MatrixRain color="gray" />
                     </Suspense>
                     <div className="fixed inset-0 w-full h-full z-0 pointer-events-none bg-slate-900" />
                     <div className="fixed inset-0 w-full h-full z-0 pointer-events-none" style={{ background: 'rgba(0,0,0,0.85)' }} />
@@ -168,10 +168,10 @@ const EventDetails = () => {
                             noiseIntensity={0.01}
 
 
-                            linesColor="#260e35"
+                            linesColor="#ffffff"
 
 
-                            scanColor={theme.primary}
+                            scanColor="#ff0000"
 
 
                             chromaticAberration={0.001}
@@ -195,7 +195,7 @@ const EventDetails = () => {
                                 speed={0.44}
                                 squareSize={40}
                                 direction="left" // up, down, left, right, diagonal
-                                borderColor="#353317" // yellowish dark brown hue fitting DPL theme
+                                borderColor="#d4690a" // yellowish dark brown hue fitting DPL theme
                                 hoverFillColor="#e8d020" // bright yellow DPL primary
                                 shape="hexagon" // hexagon fits cricket/sports well
                                 hoverTrailAmount={0} // number of trailing hovered shapes (0 = no trail)
@@ -378,29 +378,23 @@ const EventDetails = () => {
                             {/* Register and Instructions buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 items-start">
                                 <motion.a
-                                    href={registerHref}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-block px-10 py-4 border-2 border-transparent rounded-lg font-black text-sm tracking-[0.25em] uppercase text-black transition-all duration-300 no-underline hover:scale-105 active:scale-95"
-                                    style={{
-                                        backgroundColor: theme.primary,
-                                        boxShadow: 'none',
-                                    }}
-                                >
-                                    Register Now
-                                </motion.a>
+
+                                href={registerHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`inline-block px-10 py-4 border-2 rounded-lg font-black text-sm tracking-[0.25em] uppercase transition-all duration-300 no-underline hover:scale-105 active:scale-95 ${id === 'treasure-trove' ? 'bg-white text-black border-white' : 'text-black border-transparent'}`}
+                                style={id === 'treasure-trove' ? { backgroundColor: '#fff', color: '#000', boxShadow: 'none' } : { backgroundColor: theme.primary, boxShadow: 'none' }}
+                            >
+                                Register Now
+                            </motion.a>
 
                                 <motion.button
-                                    onClick={() => setIsInstructionOpen(true)}
-                                    className="inline-block px-10 py-4 rounded-lg font-black text-sm tracking-[0.25em] uppercase transition-all duration-300 border-2 cursor-pointer hover:scale-105 hover:bg-white/10 active:scale-95"
-                                    style={{
-                                        borderColor: theme.primary,
-                                        color: theme.primary,
-                                        backgroundColor: 'transparent',
-                                    }}
-                                >
-                                    Instructions
-                                </motion.button>
+                                onClick={() => setIsInstructionOpen(true)}
+                                className={`inline-block px-10 py-4 rounded-lg font-black text-sm tracking-[0.25em] uppercase transition-all duration-300 border-2 cursor-pointer hover:scale-105 active:scale-95 ${id === 'treasure-trove' ? 'bg-white text-black border-white' : 'hover:bg-white/10'}`}
+                                style={id === 'treasure-trove' ? { borderColor: '#fff', color: '#000', backgroundColor: '#fff' } : { borderColor: theme.primary, color: theme.primary, backgroundColor: 'transparent' }}
+                            >
+                                Instructions
+                            </motion.button>
                             </div>
                         </motion.div>
 
