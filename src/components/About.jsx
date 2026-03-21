@@ -84,7 +84,7 @@ const About = forwardRef((props, ref) => {
               baseRadius={dimensions.isMobile ? 0.38 : 0.3 * (1 / scaleFactor)}
               radiusStep={dimensions.isMobile ? 0.12 : 0.15 * scaleFactor}
               scaleRate={dimensions.isMobile ? 0.08 : 0.1}
-              opacity={dimensions.isMobile ? 0.2 : 0.25}
+              opacity={dimensions.isMobile ? 0.45 : 0.45}
               noiseAmount={dimensions.isMobile ? 0.05 : 0.08}
               rotation={0}
               ringGap={1.5}

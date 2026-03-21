@@ -155,7 +155,7 @@ const eventsData = [
         registerLink: EVENT_REDIRECT_URL,
         // Poster: dark indigo-purple bg (#1a1040), bright violet-blue door, purple jigsaw pieces, purple glow rays
         theme: {
-            primary: '#7b68ee',
+            primary: '#B32E2E',
             secondary: '#08041a',
             glow: '#7b68ee',
             gradient: 'radial-gradient(ellipse at 50% 40%, rgba(123,104,238,0.25) 0%, transparent 50%), radial-gradient(ellipse at 20% 10%, rgba(80,50,180,0.2) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(60,30,140,0.15) 0%, transparent 40%), linear-gradient(160deg, #08041a 0%, #120a30 30%, #1a1048 60%, #08041a 100%)',
