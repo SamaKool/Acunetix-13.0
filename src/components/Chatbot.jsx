@@ -69,15 +69,14 @@ const BotpressChat = () => {
     }
   }, []);
 
+
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
 
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     const saveData = Boolean(connection?.saveData);
-    const isMobileViewport = window.innerWidth < 768;
-    const shouldAutoLoad = !isMobileViewport && !saveData;
-
-    if (!shouldAutoLoad) return undefined;
+    // Always load, but still respect saveData
+    if (saveData) return undefined;
 
     let timeoutId = null;
     let idleId = null;
@@ -93,6 +92,19 @@ const BotpressChat = () => {
         }, 24000);
       }
     };
+
+    // Inject Botpress config for mobile sizing before loading
+    const isMobile = window.innerWidth < 768;
+    window.botpressWebChat = window.botpressWebChat || {};
+    window.botpressWebChat.config = window.botpressWebChat.config || {};
+    if (isMobile) {
+      window.botpressWebChat.config.layoutWidth = '90vw';
+      window.botpressWebChat.config.layoutHeight = '60vh';
+      window.botpressWebChat.config.hideWidget = false;
+      window.botpressWebChat.config.showCloseButton = true;
+    } else {
+      // Optionally set desktop defaults here if needed
+    }
 
     scheduleLoad();
 

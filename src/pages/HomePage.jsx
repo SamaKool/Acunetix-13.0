@@ -3,11 +3,12 @@ import { useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
+import Schedule from '@/components/Schedule';
 
 const About = lazy(() => import('@/components/About'));
 const Event = lazy(() => import('@/components/Event'));
 const Reel = lazy(() => import('@/components/Reel'));
-
+const ScheduleSection = lazy(() => import('@/components/ScheduleSection'));
 const sectionRefByState = {
   hero: 'heroRef',
   about: 'aboutRef',
@@ -153,6 +154,9 @@ function HomePage({ scrollToRefs, scrollToSection, isScrolled }) {
             <Event ref={scrollToRefs.eventRef} />
           </DeferredSection>
 
+          
+
+<Schedule ref={scrollToRefs.scheduleRef} />
           <DeferredSection
             id="reel"
             sectionRef={scrollToRefs.reelRef}

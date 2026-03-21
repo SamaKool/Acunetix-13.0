@@ -62,7 +62,7 @@ const eventsData = [
         registerLink: EVENT_REDIRECT_URL,
         // Poster: brown/sepia vintage bg (#6b4226), dark orange title, playing cards, question marks
         theme: {
-            primary: '#c26a18',
+            primary: '#808080',
             secondary: '#120a04',
             glow: '#c26a18',
             gradient: 'radial-gradient(ellipse at 50% 20%, rgba(194,106,24,0.2) 0%, transparent 50%), radial-gradient(ellipse at 30% 80%, rgba(107,66,38,0.3) 0%, transparent 50%), linear-gradient(160deg, #120a04 0%, #25180c 30%, #3a2414 60%, #120a04 100%)',
@@ -93,7 +93,7 @@ const eventsData = [
         registerLink: EVENT_REDIRECT_URL,
         // Poster: dark teal/dark cyan-green bg (#0f3038), aqua/teal highlights (#4ac8c8), code editor
         theme: {
-            primary: '#4ac8c8',
+            primary: '#5F90DF',
             secondary: '#06181c',
             glow: '#4ac8c8',
             gradient: 'radial-gradient(ellipse at 40% 10%, rgba(74,200,200,0.2) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(15,48,56,0.5) 0%, transparent 50%), linear-gradient(160deg, #06181c 0%, #0c2a30 30%, #103840 60%, #06181c 100%)',
@@ -124,7 +124,7 @@ const eventsData = [
         registerLink: EVENT_REDIRECT_URL,
         // Poster: dark navy blue bg (#1a2856), bright yellow trophy (#e8d020), yellow bottom section
         theme: {
-            primary: '#e8d020',
+            primary: '#d4690b',
             secondary: '#0a0e20',
             glow: '#e8d020',
             gradient: 'radial-gradient(ellipse at 50% 30%, rgba(232,208,32,0.12) 0%, transparent 50%), radial-gradient(ellipse at 30% 80%, rgba(26,40,86,0.5) 0%, transparent 50%), linear-gradient(160deg, #0a0e20 0%, #141e3a 30%, #1a2856 60%, #0a0e20 100%)',
@@ -155,7 +155,7 @@ const eventsData = [
         registerLink: EVENT_REDIRECT_URL,
         // Poster: dark indigo-purple bg (#1a1040), bright violet-blue door, purple jigsaw pieces, purple glow rays
         theme: {
-            primary: '#7b68ee',
+            primary: '#B32E2E',
             secondary: '#08041a',
             glow: '#7b68ee',
             gradient: 'radial-gradient(ellipse at 50% 40%, rgba(123,104,238,0.25) 0%, transparent 50%), radial-gradient(ellipse at 20% 10%, rgba(80,50,180,0.2) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(60,30,140,0.15) 0%, transparent 40%), linear-gradient(160deg, #08041a 0%, #120a30 30%, #1a1048 60%, #08041a 100%)',
