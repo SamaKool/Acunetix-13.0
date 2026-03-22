@@ -14,10 +14,12 @@ const ScrollToTop = () => {
       const el = document.querySelector(hash);
       if (el) {
         el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        return;
       }
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
+
+    // Fallback to top when no hash target exists for the current route.
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [pathname, hash]);
 
 

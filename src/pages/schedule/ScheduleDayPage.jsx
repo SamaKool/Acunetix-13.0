@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Timeline } from '@/components/timeline';
 import Navbar from '@/components/Navbar';
@@ -7,6 +7,10 @@ import ShapeGrid from '@/components/ShapeGrid';
 
 function ScheduleDayPage({ dayLabel, scheduleEvents }) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, []);
 
   const timelineData = scheduleEvents.map((eventItem) => ({
     title: eventItem.time,
@@ -40,7 +44,7 @@ function ScheduleDayPage({ dayLabel, scheduleEvents }) {
       <div className="grow relative flex flex-col items-center pt-24 pb-12" style={{ zIndex: 1 }}>
         <button
           className="fixed left-8 top-28 border border-white/15 text-white px-4 py-2 rounded-lg text-sm hover:border-[#00ffc8]/50 hover:text-[#00ffc8]/90 transition-all z-10"
-          onClick={() => navigate('/#schedule')}
+          onClick={() => navigate('/', { state: { scrollTo: 'schedule' } })}
         >
           ← Back
         </button>
