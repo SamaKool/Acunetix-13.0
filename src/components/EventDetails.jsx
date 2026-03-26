@@ -405,7 +405,7 @@ const EventDetails = () => {
                             >
                                 Instructions
                             </motion.button>
-                            </div>
+                           
                         </motion.div>
 
                         {/* Right column - Floating poster (desktop only) */}
