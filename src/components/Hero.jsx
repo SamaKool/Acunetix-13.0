@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import heroVideoWebm from '../assets/bg.webm'; 
 
-const TARGET_DATE = new Date('2026-03-27T00:00:00+05:30').getTime();
+const TARGET_DATE = new Date('2026-03-27T10:30:00+05:30').getTime();
 
 function getTimeLeft() {
   const now = Date.now();
